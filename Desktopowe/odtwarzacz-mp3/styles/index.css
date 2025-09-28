@@ -1,0 +1,64 @@
+*{
+  font-family: Montserrat Alternates;
+  font-weight: 400;
+}
+body{
+  background-color: rgb(22, 22, 22);
+  color: white;
+}
+#wybor{
+  display:block;
+  width:120px;
+  height:30px;
+  text-align: center;
+  margin: auto auto;
+}
+#song_name{
+  text-align: center;
+}
+.control_button{
+  width: 40px;
+  height: 40px;
+  background-color: aliceblue;
+  border: none;
+  border-radius: 50%;
+  text-align: center;
+}
+.control_button:hover{
+  transform: scale(1.03);
+}
+
+#play_icon{
+  padding: 3px 0 0 0px;
+  margin: auto;
+  width: 30px;
+  height: 30px;
+}
+
+#pause_icon{
+  padding: 3px 0 0 0px;
+  margin: auto;
+  width: 30px;
+  height: 30px;
+}
+
+#aucio_icon{
+  padding: 3px 0 0 0px;
+  margin: auto;
+  width: 30px;
+  height: 30px;
+}
+
+#time_seek{
+  width: 200px;
+}
+
+#sliders{
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+}
+
+#play_buttons{
+  text-align: center;
+}
