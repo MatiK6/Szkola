@@ -23,34 +23,40 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
 
         // Załaduj plik 
         audioPlayer.load();
-        audioPlayer.play();
 
         songName.innerHTML = `Teraz gra: ${file.name}`
         
         playBtn.onclick = () => audioPlayer.play();
         pauseBtn.onclick = () => audioPlayer.pause();
 
-      
-        // max value paska czasu
+
+      //załadowanie, update paska czasu i czasu, odtworzenie pliku
         audioPlayer.onloadedmetadata = () => {
-            time_seek.max = audioPlayer.duration; 
+            console.log("Metadata loaded. Duration:", audioPlayer.duration);
+            time_seek.max = audioPlayer.duration;
+         
+            audioPlayer.ontimeupdate = () => {
+                time_seek.value = audioPlayer.currentTime;
+                const minutes = Math.floor(audioPlayer.currentTime / 60);
+                const seconds = Math.floor(audioPlayer.currentTime % 60);      
+                time.innerHTML = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            }
+            
+ 
+            audioPlayer.play();
         }
             
         //update paska czasu
         audioPlayer.ontimeupdate = () => {
             time_seek.value = audioPlayer.currentTime;
+            time_seek.value = audioPlayer.currentTime
         }
         //input paska czasu
         time_seek.oninput = () => {
             audioPlayer.currentTime = time_seek.value
         }
 
-        //update czasu
-        audioPlayer.ontimeupdate = () => {
-            const minutes = Math.floor(audioPlayer.currentTime / 60);
-            const seconds = Math.floor(audioPlayer.currentTime % 60);      
-            time.innerHTML = `${minutes}:${seconds}`
-        }
+
 
         //dzwiek
 
@@ -70,7 +76,11 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
         audioPlayer.onerror = () => {
             console.error("Błąd odtwarzania pliku");
         };
-
+setTimeout(() => {
+    console.log("Testing slider movement...");
+    time_seek.value = 50;
+    console.log("Slider value set to:", time_seek.value);
+}, 2000);
     } else {
         alert("Proszę wybrać plik MP3.");
     }
